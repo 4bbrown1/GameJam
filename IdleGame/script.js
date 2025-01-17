@@ -15,7 +15,7 @@ const battleLogEl = document.getElementById('battle-log');
 
 //Load enemies from JSON
 function loadEnemiesForLocation(locationName) {
-    fetch('IdleGame/enemyData.JSON')
+    fetch('enemyData.JSON')
         .then(response => response.json())
         .then(data => {
             const location = data.locations.find(loc => loc.name === locationName);
