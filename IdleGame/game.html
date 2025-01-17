@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapeshifter Battle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="explore-menu">
+        <h1>Choose a Location</h1>
+        <button class="location-button" data-location="Forest">Forest</button>
+        <button class="location-button" data-location="Cave">Cave</button>
+        <button class="location-button" data-location="Ruins">Ruins</button>
+    </div>
+
+    <div id="battle-menu" style="display: none;">
+        <h1>Battle</h1>
+        <div id="player-stats">
+            <p><strong>Player Health:</strong> <span id="player-health">100</span></p>
+        </div>
+        <div id="enemy-stats">
+            <p><strong>Enemy:</strong> <span id="enemy-name">None</span></p>
+            <p><strong>Health:</strong> <span id="enemy-health">-</span></p>
+            <p><strong>Damage:</strong> <span id="enemy-damage">-</span></p>
+        </div>
+        <button id="battle-button" disabled>Start Battle</button>
+        <div id="battle-log"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

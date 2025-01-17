@@ -1,0 +1,25 @@
+{
+    "locations": [
+        {
+            "name": "Forest",
+            "enemies": [
+                { "name": "Goblin", "baseHealth": 30, "baseDamage": 5, "loot": ["Herbs", "Gold"] },
+                { "name": "Troll", "baseHealth": 70, "baseDamage": 10, "loot": ["Gold", "Club"] }
+            ]
+        },
+        {
+            "name": "Cave",
+            "enemies": [
+                { "name": "Bat", "baseHealth": 20, "baseDamage": 3, "loot": ["Bat Wings", "Gold"] },
+                { "name": "Orc", "baseHealth": 50, "baseDamage": 8, "loot": ["Iron Ore", "Gold"] }
+            ]
+        },
+        {
+            "name": "Ruins",
+            "enemies": [
+                { "name": "Skeleton", "baseHealth": 40, "baseDamage": 6, "loot": ["Bone", "Gold"] },
+                { "name": "Dark Mage", "baseHealth": 35, "baseDamage": 12, "loot": ["Mana Potion", "Gold"] }
+            ]
+        }
+    ]
+}
