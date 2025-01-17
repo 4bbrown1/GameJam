@@ -58,7 +58,6 @@ function startBattle() {
     battleButton.disabled = true;
 
     // Start attacks (auto or manual, as preferred)
-}
 
 //Logs
 function logMessage(message) {
