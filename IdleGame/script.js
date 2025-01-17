@@ -15,7 +15,7 @@ const battleLogEl = document.getElementById('battle-log');
 
 //Load enemies from JSON
 function loadEnemiesForLocation(locationName) {
-    fetch('enemyData.JSON')
+    fetch('enemyData.json')
         .then(response => response.json())
         .then(data => {
             const location = data.locations.find(loc => loc.name === locationName);
