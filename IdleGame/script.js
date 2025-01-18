@@ -60,7 +60,7 @@ function startBattle() {
     // Start attacks (auto or manual, as preferred)
     startPlayerAttacks(); // Start player's attack timer
     startEnemyAttacks();  // Start enemy's attack timer
-
+}
 //Logs
 function logMessage(message) {
     battleLogEl.innerHTML += `<p>${message}</p>`;
