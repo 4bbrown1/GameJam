@@ -1,7 +1,7 @@
 //Variable setup
 let enemyPool = [];
 let currentLocation = null;
-let player = { health: 100 };
+//let player = { health: 100 };
 let enemy = null;
 
 //Player setup
