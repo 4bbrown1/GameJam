@@ -58,6 +58,8 @@ function startBattle() {
     battleButton.disabled = true;
 
     // Start attacks (auto or manual, as preferred)
+    startPlayerAttacks(); // Start player's attack timer
+    startEnemyAttacks();  // Start enemy's attack timer
 
 //Logs
 function logMessage(message) {
@@ -65,6 +67,58 @@ function logMessage(message) {
     battleLogEl.scrollTop = battleLogEl.scrollHeight; // Auto-scroll
 }
 
+// Helper to start player's attacks
+function startPlayerAttacks() {
+    const form = player.forms[player.currentForm];
+    const attackInterval = form.speed * 1000; // Convert speed to milliseconds
+
+    player.attackInterval = setInterval(() => {
+        if (enemy && enemy.health > 0) {
+            const damage = Math.floor(Math.random() * (form.maxDamage - form.minDamage + 1)) + form.minDamage;
+            enemy.health -= damage;
+            logMessage(`You attack ${enemy.name} with ${form.name} for ${damage} damage!`);
+            enemyHealthEl.textContent = Math.max(enemy.health, 0); // Update enemy health display
+
+            // Check if the enemy is defeated
+            if (enemy.health <= 0) {
+                logMessage(`${enemy.name} is defeated!`);
+                clearInterval(player.attackInterval); // Stop player's attacks
+                clearInterval(enemy.attackInterval); // Stop enemy's attacks
+                enemy = null;
+                battleButton.disabled = false; // Re-enable the battle button
+                logMessage('Click "Start Battle" to fight the next enemy.');
+            }
+        }
+    }, attackInterval);
+}
+
+// Helper to start enemy's attacks
+function startEnemyAttacks() {
+    const attackInterval = 2000; // Enemy attacks every 2 seconds (adjust as needed)
+
+    enemy.attackInterval = setInterval(() => {
+        if (enemy && player.health > 0) {
+            const damage = Math.floor(Math.random() * (enemy.baseDamage + 5 - enemy.baseDamage + 1)) + enemy.baseDamage;
+            player.health -= damage;
+            updatePlayerHealth(); // Update player's health display
+            logMessage(`${enemy.name} attacks you for ${damage} damage!`);
+
+            // Check if the player is defeated
+            if (player.health <= 0) {
+                logMessage('You have been defeated!');
+                clearInterval(player.attackInterval); // Stop player's attacks
+                clearInterval(enemy.attackInterval); // Stop enemy's attacks
+                battleButton.disabled = true; // Keep battle button disabled
+            }
+        }
+    }, attackInterval);
+}
+
+// Helper to update player's health
+function updatePlayerHealth() {
+    playerHealthEl.textContent = Math.max(player.health, 0); // Prevent negative health display
+}
+    
 //Event Listeners
 locationButtons.forEach(button => {
     button.addEventListener('click', () => loadEnemiesForLocation(button.dataset.location));
