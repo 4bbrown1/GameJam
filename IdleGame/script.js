@@ -4,6 +4,40 @@ let currentLocation = null;
 let player = { health: 100 };
 let enemy = null;
 
+//Player setup
+const player = {
+    health: 100,
+    forms: {
+        human: { name: "Human", minDamage: 1, maxDamage: 3, speed: 1 },
+        sword: { name: "Sword", minDamage: 8, maxDamage: 12, speed: 1.5 },
+        bow: { name: "Bow", minDamage: 6, maxDamage: 9, speed: 2.5 },
+        staff: { name: "Staff", minDamage: 10, maxDamage: 15, speed: 1 }
+    },
+    currentForm: "human", // Ensure this is set
+    attackInterval: null
+};
+
+//Form Switching
+function transform(form) {
+    if (!player.forms[form]) {
+        console.error(`Invalid form: ${form}`);
+        return;
+    }
+
+    if (player.attackInterval) {
+        clearInterval(player.attackInterval); // Stop current attack interval
+    }
+
+    player.currentForm = form; // Set the new form
+    currentFormEl.textContent = player.forms[form].name; // Update UI
+    logPlayerAction(`Transformed into ${player.forms[form].name}!`);
+    
+    if (enemy) {
+        startAutoAttacks(); // Restart attacks with new form's speed
+    }
+}
+
+
 // DOM Elements
 const locationButtons = document.querySelectorAll('.location-button');
 const battleButton = document.getElementById('battle-button');
